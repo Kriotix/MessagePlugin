@@ -1,8 +1,6 @@
 package me.kriotix.messageplugin.commands;
 
 import me.kriotix.messageplugin.MessagePlugin;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,7 +14,6 @@ public class ReplyCommand implements CommandExecutor {
     public ReplyCommand(MessagePlugin plugin){
         this.plugin = plugin;
     }
-    public HashMap<Player, Player> replyPlayer = new HashMap<>();
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
@@ -28,25 +25,16 @@ public class ReplyCommand implements CommandExecutor {
             return true;
         }
 
-        Player receiver = Bukkit.getPlayer(args[0]);
+        HashMap<Player,Player> replyPlayer;
 
-        if (receiver == null){
-            sender.sendMessage("Recipient not found.");
-            return true;
-        }
+        MessageCommand messageCommand = new MessageCommand(plugin);
 
-        String receiverMessage = ChatColor.YELLOW + "From" + commandSender.getName() + ": ";
-        String senderMessage = ChatColor.AQUA + "To" + commandSender.getName() + ": ";
+        replyPlayer = messageCommand.replyPlayer;
 
-        for (int i = 1; i < args.length; i++){
-            receiverMessage += args[i];
-            senderMessage += args[i];
-        }
+        Player receiver = replyPlayer.get(sender);
 
-        commandSender.sendMessage(senderMessage);
-        receiver.sendMessage(receiverMessage);
+        messageCommand.messageSender(sender, receiver, args);
 
-        replyPlayer.put(sender, receiver);
         return true;
     }
 }

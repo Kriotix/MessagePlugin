@@ -1,10 +1,11 @@
 name: MessagePlugin
-version: '${project.version}'
-main: me.kriotix.messageplugin.MessagePlugin
+version: '1.0'
+main: me.kriotix.MessagePlugin.MessagePlugin
 api-version: '1.20'
 commands:
   msg:
     Description: "Message other players."
-
+    Usage: "/msg (message)"
   r:
-    Description: "Reply to a conversation.""
+    Description: "Reply to a conversation."
+    Usage: "/r (message)"

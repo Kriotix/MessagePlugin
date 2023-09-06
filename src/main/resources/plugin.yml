@@ -1,0 +1,4 @@
+name: MessagePlugin
+version: '${project.version}'
+main: me.kriotix.messageplugin.MessagePlugin
+api-version: '1.20'

@@ -35,18 +35,27 @@ public class MessageCommand implements CommandExecutor {
             return true;
         }
 
-        String receiverMessage = ChatColor.YELLOW + "From" + commandSender.getName() + ": ";
-        String senderMessage = ChatColor.AQUA + "To" + commandSender.getName() + ": ";
+        messageSender(sender,receiver,args);
+
+        replyPlayer.put(sender,receiver);
+
+       return true;
+    }
+
+    public HashMap<Player,Player> getHash(HashMap<Player,Player> replyPlayer){
+        return replyPlayer;
+    }
+
+    public void messageSender(Player sender, Player receiver,String[] args){
+        String receiverMessage = ChatColor.YELLOW + "From" + sender.getName() + ": ";
+        String senderMessage = ChatColor.AQUA + "To" + sender.getName() + ": ";
 
         for (int i = 1; i < args.length; i++){
             receiverMessage += args[i];
             senderMessage += args[i];
         }
 
-        commandSender.sendMessage(senderMessage);
+        sender.sendMessage(senderMessage);
         receiver.sendMessage(receiverMessage);
-
-        replyPlayer.put(sender, receiver);
-       return true;
     }
 }

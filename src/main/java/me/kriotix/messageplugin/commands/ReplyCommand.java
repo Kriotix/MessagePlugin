@@ -1,6 +1,7 @@
 package me.kriotix.messageplugin.commands;
 
 import me.kriotix.messageplugin.MessagePlugin;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -32,9 +33,22 @@ public class ReplyCommand implements CommandExecutor {
         replyPlayer = messageCommand.replyPlayer;
 
         Player receiver = replyPlayer.get(sender);
-
-        messageCommand.messageSender(sender, receiver, args);
+        sender.sendMessage(receiver.getName());
+        messageSender(sender, receiver, args);
 
         return true;
+    }
+
+    public void messageSender(Player sender, Player receiver,String[] args){
+        String receiverMessage = ChatColor.YELLOW + "From " + sender.getName() + ": ";
+        String senderMessage = ChatColor.AQUA + "To " + sender.getName() + ": ";
+
+        for (int i = 0; i < args.length; i++){
+            receiverMessage += args[i] + " ";
+            senderMessage += args[i] + " ";
+        }
+
+        sender.sendMessage(senderMessage);
+        receiver.sendMessage(receiverMessage);
     }
 }

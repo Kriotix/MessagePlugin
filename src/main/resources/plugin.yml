@@ -1,6 +1,6 @@
 name: MessagePlugin
 version: '1.0'
-main: me.kriotix.MessagePlugin.MessagePlugin
+main: me.kriotix.messageplugin.MessagePlugin
 api-version: '1.20'
 commands:
   msg:

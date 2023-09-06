@@ -47,12 +47,12 @@ public class MessageCommand implements CommandExecutor {
     }
 
     public void messageSender(Player sender, Player receiver,String[] args){
-        String receiverMessage = ChatColor.YELLOW + "From" + sender.getName() + ": ";
-        String senderMessage = ChatColor.AQUA + "To" + sender.getName() + ": ";
+        String receiverMessage = ChatColor.YELLOW + "From " + sender.getName() + ": ";
+        String senderMessage = ChatColor.AQUA + "To " + sender.getName() + ": ";
 
         for (int i = 1; i < args.length; i++){
-            receiverMessage += args[i];
-            senderMessage += args[i];
+            receiverMessage += args[i] + " ";
+            senderMessage += args[i] + " ";
         }
 
         sender.sendMessage(senderMessage);

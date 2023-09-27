@@ -9,6 +9,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.Arrays;
+
 public class MessageCommand implements CommandExecutor {
 
    private MessagePlugin plugin;
@@ -48,8 +50,9 @@ public class MessageCommand implements CommandExecutor {
             return true;
         }
 
-        //Combines string array into one string
-        String message = String.join(" ", args);
+        //Combines string array into one string, starting at the message rather than the player name
+        String message = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
+
 
         //Adds flavor text to message
         String senderMessage = ChatColor.AQUA + "To " + sender.getName() + ": " + ChatColor.GRAY + message;

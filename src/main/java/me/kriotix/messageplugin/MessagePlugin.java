@@ -10,6 +10,8 @@ public final class MessagePlugin extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         getCommand("msg").setExecutor(new MessageCommand(this));
+
         getCommand("r").setExecutor(new ReplyCommand(this));
+
     }
 }
